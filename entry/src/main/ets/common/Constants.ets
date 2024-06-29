@@ -14,12 +14,12 @@
  */
 
 export class Constants {
-  static readonly PAGE_PADDING: number = 12; // 页面内容内边距，用于悬浮窗位置计算
+  static readonly PAGE_PADDING: number = 28; // 页面内容内边距，用于悬浮窗位置计算
   static readonly ASPECT_RATIO: number = 1; // 图标宽高比
   static readonly PRODUCT_SERVICE_SPACE: number = 16; // 商品服务项间距
-  static readonly FLOAT_WINDOW_WIDTH: number = 120; // 悬浮窗宽度
-  static readonly FLOAT_WINDOW_HEIGHT: number = 160; // 悬浮窗高度
-  static readonly INIT_POSITION_Y: number = 300; // 悬浮窗相对父容器左上角的Y坐标初始值
+  static readonly FLOAT_WINDOW_WIDTH: number = 300; // 悬浮窗宽度
+  static readonly FLOAT_WINDOW_HEIGHT: number = 500; // 悬浮窗高度
+  static readonly INIT_POSITION_Y: number = 130; // 悬浮窗相对父容器左上角的Y坐标初始值
   static readonly FLEX_SHRINK: number = 1;
   static readonly FLEX_GROW: number = 1;
   static readonly LAYOUT_WEIGHT: number = 1;
