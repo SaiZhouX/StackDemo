@@ -115,10 +115,10 @@ struct FloatWindow {
             this.nZindexTwo = 2;
             this.windowStartX = this.nFirstX;
             this.windowStartY = this.nFirstY;
-            this.edge.right = this.startEdge.right;
-            this.edge.top = this.startEdge.top;
           }
         })
+        this.edge.right = this.startEdge.right;
+        this.edge.top = this.startEdge.top;
         break;
       }
       default: {
@@ -208,10 +208,10 @@ struct FloatWindowx {
             this.nZindexOne = 2;
             this.windowStartX = this.nFirstX;
             this.windowStartY = this.nFirstY;
-            this.edge.right = this.startEdge.right;
-            this.edge.top = this.startEdge.top;
           }
         })
+        this.edge.right = this.startEdge.right;
+        this.edge.top = this.startEdge.top;
         break;
       }
       default: {
