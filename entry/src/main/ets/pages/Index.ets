@@ -10,10 +10,8 @@ struct Index {
   @State containerWidth: number = 0;
   // 父组件高度
   @State containerHeight: number = 0;
-
   @State nZindexOne: number = 1;
   @State nZindexTwo: number = 2;
-
 
   build() {
     Stack({ alignContent: Alignment.TopEnd }) {
@@ -38,31 +36,26 @@ struct Index {
   @Builder
   rowItem() {
     // 悬浮窗
-    FloatWindow({ containerWidth: this.containerWidth, containerHeight: this.containerHeight, nZindexOne: this.nZindexOne, nZindexTwo: this.nZindexTwo})
+    FloatWindow({
+      containerWidth: this.containerWidth,
+      containerHeight: this.containerHeight,
+      nZindexOne: this.nZindexOne,
+      nZindexTwo: this.nZindexTwo
+    })
     // 悬浮窗
-    FloatWindowx({ containerWidth: this.containerWidth, containerHeight: this.containerHeight, nZindexOne: this.nZindexOne, nZindexTwo: this.nZindexTwo })
-    // Image($r('app.media.test'))
-    //   .width('100%')
-    //   .height('100%')
-    //   .objectFit(ImageFit.Fill)
-    //   .width(Constants.FLOAT_WINDOW_WIDTH)
-    //   .height(Constants.FLOAT_WINDOW_HEIGHT)
-    //   .border({ width: 1 })
-    // Row() {
-    //
-    // }
-    // .width(Constants.FLOAT_WINDOW_WIDTH)
-    // .height(Constants.FLOAT_WINDOW_HEIGHT)
-    // .border({ width: 1 })
-    // .backgroundImageSize(ImageSize.Cover)
-    // .backgroundImage($r('app.media.test'));
+    FloatWindowx({
+      containerWidth: this.containerWidth,
+      containerHeight: this.containerHeight,
+      nZindexOne: this.nZindexOne,
+      nZindexTwo: this.nZindexTwo
+    })
   }
 }
 
 @Component
 struct FloatWindow {
-  @Link nZindexOne:number;
-  @Link nZindexTwo:number;
+  @Link nZindexOne: number;
+  @Link nZindexTwo: number;
   // 悬浮窗相对于父组件四条边的距离，top和bottom同时设置时top生效，right和left同时设置时left生效
   @State edge: Edges = { top: Constants.INIT_POSITION_Y, right: Constants.PAGE_PADDING };
   @Link containerWidth: number;
@@ -70,11 +63,9 @@ struct FloatWindow {
   // 拖拽移动开始时悬浮窗在窗口中的坐标，每次移动回调触发时更新
   private windowStartX: number = 0;
   private windowStartY: number = 0;
-  private startEdge: Edges = { top: Constants.INIT_POSITION_Y, right: Constants.PAGE_PADDING };
   private nFirstX: number = 0;
   private nFirstY: number = 0;
-  private videoController: VideoController = new VideoController();
-
+  private startEdge: Edges = { top: Constants.INIT_POSITION_Y, right: Constants.PAGE_PADDING };
 
   /**
    * 触摸回调，悬浮窗跟手和贴边动画
@@ -124,18 +115,9 @@ struct FloatWindow {
             this.nZindexTwo = 2;
             this.windowStartX = this.nFirstX;
             this.windowStartY = this.nFirstY;
-            this.edge = this.startEdge;
-          } else {
-            // this.edge.right = undefined;
-            // this.edge.left = Constants.PAGE_PADDING;
+            this.edge.right = this.startEdge.right;
+            this.edge.top = this.startEdge.top;
           }
-          // // 判断悬浮窗是否超出内容区上下边界，根据结果将悬浮窗设置在边界位置
-          // if (this.edge.top as number < Constants.PAGE_PADDING) {
-          //   this.edge.top = Constants.PAGE_PADDING;
-          // } else if (this.edge.top as number >
-          //   this.containerHeight - Constants.FLOAT_WINDOW_HEIGHT - Constants.PAGE_PADDING) {
-          //   this.edge.top = this.containerHeight - Constants.FLOAT_WINDOW_HEIGHT - Constants.PAGE_PADDING;
-          // }
         })
         break;
       }
@@ -148,14 +130,10 @@ struct FloatWindow {
   build() {
     Stack() {
       Image($r('app.media.test'))
-        .width('100%').height('100%').objectFit(ImageFit.Fill).border({width:1,color:Color.Red})
+        .width('100%').height('100%').objectFit(ImageFit.Fill).border({ width: 1, color: Color.Red })
     }
     .align(Alignment.Center)
     .clip(true)
-    // .border({
-    //   width: $r('app.integer.float_window_bor der_width'),
-    //   color: $r('app.color.ohos_id_color_background')
-    // })
     .border({ width: 1 })
     .width(Constants.FLOAT_WINDOW_WIDTH)
     .height(Constants.FLOAT_WINDOW_HEIGHT)
@@ -170,7 +148,7 @@ struct FloatWindow {
 
 @Component
 struct FloatWindowx {
-  @Link nZindexOne:number;
+  @Link nZindexOne: number;
   @Link nZindexTwo: number;
   // 悬浮窗相对于父组件四条边的距离，top和bottom同时设置时top生效，right和left同时设置时left生效
   @State edge: Edges = { top: Constants.INIT_POSITION_Y, right: Constants.PAGE_PADDING };
@@ -182,10 +160,6 @@ struct FloatWindowx {
   private nFirstX: number = 0;
   private nFirstY: number = 0;
   private startEdge: Edges = { top: Constants.INIT_POSITION_Y, right: Constants.PAGE_PADDING };
-  private videoController: VideoController = new VideoController();
-
-  aboutToAppear(): void {
-  }
 
   /**
    * 触摸回调，悬浮窗跟手和贴边动画
@@ -207,7 +181,6 @@ struct FloatWindowx {
         animateTo({ curve: curves.responsiveSpringMotion() }, () => {
           // 判断当前edge中属性left和right哪个不为undefined，用于控制悬浮窗水平方向的位置
           if (this.edge.left !== undefined) {
-            hilog.info(0x0000, 'Green', 'edge.left !== undefined');
             this.edge.left = this.edge.left as number + (windowX - this.windowStartX);
           } else {
             this.edge.right = this.edge.right as number - (windowX - this.windowStartX);
@@ -235,18 +208,9 @@ struct FloatWindowx {
             this.nZindexOne = 2;
             this.windowStartX = this.nFirstX;
             this.windowStartY = this.nFirstY;
-            this.edge = this.startEdge;
-          } else {
-            // this.edge.right = undefined;
-            // this.edge.left = Constants.PAGE_PADDING;
+            this.edge.right = this.startEdge.right;
+            this.edge.top = this.startEdge.top;
           }
-          // // 判断悬浮窗是否超出内容区上下边界，根据结果将悬浮窗设置在边界位置
-          // if (this.edge.top as number < Constants.PAGE_PADDING) {
-          //   this.edge.top = Constants.PAGE_PADDING;
-          // } else if (this.edge.top as number >
-          //   this.containerHeight - Constants.FLOAT_WINDOW_HEIGHT - Constants.PAGE_PADDING) {
-          //   this.edge.top = this.containerHeight - Constants.FLOAT_WINDOW_HEIGHT - Constants.PAGE_PADDING;
-          // }
         })
         break;
       }
@@ -259,19 +223,15 @@ struct FloatWindowx {
   build() {
     Stack() {
       Image($r('app.media.test'))
-        .width('100%').height('100%').objectFit(ImageFit.Fill).border({width:1,color:Color.Green})
+        .width('100%').height('100%').objectFit(ImageFit.Fill).border({ width: 1, color: Color.Green })
     }
     .align(Alignment.Center)
     .clip(true)
-    // .border({
-    //   width: $r('app.integer.float_window_bor der_width'),
-    //   color: $r('app.color.ohos_id_color_background')
-    // })
     .border({ width: 1 })
     .width(Constants.FLOAT_WINDOW_WIDTH)
     .height(Constants.FLOAT_WINDOW_HEIGHT)
     .backgroundColor($r('app.color.ohos_id_color_foreground'))
-    .position(this.startEdge)
+    .position(this.edge)
     .onTouch((event: TouchEvent) => {
       this.onTouchEvent(event);
     })
