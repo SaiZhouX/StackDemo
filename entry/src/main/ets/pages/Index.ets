@@ -109,8 +109,8 @@ struct FloatWindow {
         }
         // TODO：知识点：通过判断悬浮窗在父组件中的位置，设置悬浮窗贴边，使用curves.springMotion()弹性动画曲线，可以实现阻尼动画效果
         animateTo({ curve: curves.springMotion() }, () => {
-          // 判断悬浮窗中心在水平方向是否超过父组件宽度的一半，根据结果设置靠左或靠右
-          if (centerX > (this.containerWidth / 2)) {
+          // 悬浮窗中心在水平方向是否超过父组件宽度的3/4或者小于父组件宽度的1/4，悬浮窗移至下一层，否则悬浮窗复位
+          if (centerX > (this.containerWidth * 3 / 4) || centerX < (this.containerWidth / 4)){
             this.nZindexOne = 1;
             this.nZindexTwo = 2;
             this.windowStartX = this.nFirstX;
@@ -202,8 +202,8 @@ struct FloatWindowx {
         }
         // TODO：知识点：通过判断悬浮窗在父组件中的位置，设置悬浮窗贴边，使用curves.springMotion()弹性动画曲线，可以实现阻尼动画效果
         animateTo({ curve: curves.springMotion() }, () => {
-          // 判断悬浮窗中心在水平方向是否超过父组件宽度的一半，根据结果设置靠左或靠右
-          if (centerX > (this.containerWidth / 2)) {
+          // 悬浮窗中心在水平方向是否超过父组件宽度的3/4或者小于父组件宽度的1/4，悬浮窗移至下一层，否则悬浮窗复位
+          if (centerX > (this.containerWidth * 3 / 4) || centerX < (this.containerWidth / 4)) {
             this.nZindexTwo = 1;
             this.nZindexOne = 2;
             this.windowStartX = this.nFirstX;
