@@ -23,4 +23,7 @@ export class Constants {
   static readonly FLEX_SHRINK: number = 1;
   static readonly FLEX_GROW: number = 1;
   static readonly LAYOUT_WEIGHT: number = 1;
+
+  static readonly TEXT_WIDTH: number = 30; // text组件宽度
+  static readonly TEXT_HEIGHT: number = 50; // text组件高度
 }

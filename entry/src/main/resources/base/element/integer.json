@@ -15,6 +15,14 @@
     {
       "name": "float_window_content_border_radius",
       "value": 14
+    },
+    {
+      "name": "excerpt_font_size",
+      "value": 30
+    },
+    {
+      "name": "author_font_size",
+      "value": 20
     }
   ]
 }
