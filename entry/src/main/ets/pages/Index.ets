@@ -12,11 +12,11 @@ struct Index {
   private arr:string[] = ["1","2"];
 
   build() {
-    Stack({ alignContent: Alignment.TopEnd }) {
+    Stack({ alignContent: Alignment.Center }) {
       // 商品信息展示组件
       this.rowItem()
     }
-    .align(Alignment.Center)
+    // .align(Alignment.Center)
     .width($r('app.string.float_window_full_size'))
     .height($r('app.string.float_window_full_size'))
     .backgroundColor($r('app.color.ohos_id_color_sub_background'))
